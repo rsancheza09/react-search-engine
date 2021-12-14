@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ResultComponent = ({ resultInfo }) => {
+const Result = ({ resultInfo }) => {
     return (
         <div className="result-container">
-            <a href={resultInfo.link} target="_blank" rel="noreferrer">{resultInfo.title}</a>
-            <p>{resultInfo.description}</p>
+            <a href={resultInfo.url} target="_blank" rel="noreferrer">{resultInfo.title}</a>
+            <p>{resultInfo.snippet}</p>
         </div>
     );
 };
 
-ResultComponent.propTypes = {
+Result.propTypes = {
     resultInfo: PropTypes.shape({
-        link: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string
     }).isRequired,
 };
 
-export default ResultComponent;
+export default Result;

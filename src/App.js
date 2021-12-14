@@ -1,14 +1,18 @@
+import { Provider } from 'react-redux';
 import './styles/variables.scss'
 import './styles/App.scss';
-import SearchComponent from './components/SearchComponent';
-import ResultsComponent from './components/ResultsComponent';
+import store from './store';
+import Search from './components/SearchComponent';
+import Results from './components/ResultsComponent';
 
-function App() {
+function App(props) {
   return (
-    <div className="search-app">
-      <SearchComponent />
-      <ResultsComponent />
-    </div>
+    <Provider store={ store}>
+      <div className="search-app">
+        <Search />
+        <Results />
+      </div>
+    </Provider>
   );
 }
 

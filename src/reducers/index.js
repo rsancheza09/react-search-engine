@@ -1,7 +1,5 @@
-import { combineReducers } from "redux"
+import { combineReducers } from 'redux';
+import search from './search';
+import pagination from './pagination';
 
-const reducers = (history) => combineReducers({
-    router: connectRouter(history)
-})
-
-export default reducers
+export default combineReducers({ search, pagination });

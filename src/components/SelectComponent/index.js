@@ -1,21 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+import ReactSelect from 'react-select';
 import '../../styles/select.scss';
 
-const SelectComponent = ({ selectClassName, options, getOptionSelected }) => {
+const Select = ({ selectClassName, options, getOptionSelected, defaultValue }) => {
+    const handleSelectChange = option => getOptionSelected(option);
     return (
-        <Select isMulti className={selectClassName} options={options} onChange={(option) => getOptionSelected(option.value)}  />
+        <ReactSelect
+            isMulti
+            className={selectClassName}
+            options={options}
+            onChange={handleSelectChange}
+            defaultValue={defaultValue}
+        />
     )
 };
 
-SelectComponent.propTypes = {
+Select.propTypes = {
     selectClassName: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.any.isRequired,
         label: PropTypes.string.isRequired
     })),
     getOptionSelected: PropTypes.func.isRequired,
+    defaultValue: PropTypes.array
 };
 
-export default SelectComponent;
+export default Select;
