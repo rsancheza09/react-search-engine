@@ -5,3 +5,4 @@ export const GOOGLE_SE = 'Google';
 export const BING_SE = 'Bing';
 export const SET_PAGINATION_OFFSET = 'SET_PAGINATION_OFFSET';
 export const CLEAR_PAGINATION_OFFSET = 'CLEAR_PAGINATION_OFFSET';
+export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';

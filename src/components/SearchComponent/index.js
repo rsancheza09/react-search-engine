@@ -9,7 +9,7 @@ import { GOOGLE_SE, BING_SE } from '../../constants';
 
 const Search = (props) => {
     const { setSearchEngine, getSearchResults, searchEngine } = props;
-    const [searchText, setSearchText] = useState('');
+    const [searchText, setSearchTextState] = useState('');
     const options = [
         { value: GOOGLE_SE, label: GOOGLE_SE },
         { value: BING_SE, label: BING_SE },
@@ -25,10 +25,13 @@ const Search = (props) => {
     };
 
     const onInputSearchChange = (event) => {
-        setSearchText(event.target.value);
+        setSearchTextState(event.target.value);
     };
 
-    const handleSubmitClick = () => getSearchResults(searchText)
+    const handleSubmitClick = () => {
+        getSearchResults({searchText});
+    };
+
     return (
         <>
             <div className="search-container">

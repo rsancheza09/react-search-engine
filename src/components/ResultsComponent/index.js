@@ -5,6 +5,7 @@ import Icon from '../Icon';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setPaginationOffset } from '../../actions/paginationActions';
+import { getSearchResults } from '../../actions/searchActions';
 
 import '../../styles/results.scss';
 
@@ -18,7 +19,13 @@ const Results = (props) => {
     }, [searchResults, pagination]);
 
     const handlePageClick = (event) => {
-        console.log(event);
+        const { selected } = event;
+        const {setPaginationOffset, getSearchResults, searchText } = props;
+        const itemsPerPage = 10;
+        const offset = selected * itemsPerPage + 1;
+        setPaginationOffset(offset);
+        getSearchResults({searchText, offset })
+
     };
     return (
         <div className="results-container">
@@ -55,10 +62,12 @@ const Results = (props) => {
 const mapStateToProps = state => ({
     searchResults: state.search.searchResults,
     pagination: state.pagination,
+    searchText: state.search.searchText,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     setPaginationOffset,
-});
+    getSearchResults,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results);

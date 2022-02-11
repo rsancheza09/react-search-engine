@@ -8,6 +8,7 @@ const initialState = {
         totalResults: 0,
     },
     searchEngine: GOOGLE_SE,
+    searchText: '',
 };
 
 function search(state = initialState, action) {
@@ -32,6 +33,12 @@ function search(state = initialState, action) {
                     ...action.payload,
                 },
             };
+
+        case ACTIONS.SET_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.payload
+            }
 
         default:
             return state;

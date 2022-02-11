@@ -52,7 +52,7 @@ const searchByGoogle = (searchText) => {
     });
 };
 
-const searchByBing = (searchText, resultsCount = 10, offset = 0) => {
+const searchByBing = ({ searchText, resultsCount, offset }) => {
     const options = {
         params: {
             q: searchText,
@@ -85,7 +85,7 @@ const searchByBing = (searchText, resultsCount = 10, offset = 0) => {
     });
 };
 
-export const search = (searchText, searchEngine) => {
+export const search = ({searchText, searchEngine, offset}) => {
     if (searchEngine === GOOGLE_SE) {
         return new Promise((resolve, reject) => {
             searchByGoogle(searchText)
@@ -94,7 +94,7 @@ export const search = (searchText, searchEngine) => {
         });
     } else if (searchEngine === BING_SE) {
         return new Promise((resolve, reject) => {
-            searchByBing(searchText)
+            searchByBing({searchText, offset})
                 .then(response => resolve(response))
                 .catch(error => reject(error));
         });
